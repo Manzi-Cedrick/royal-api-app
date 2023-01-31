@@ -1,13 +1,13 @@
 <x-layout>
             <div class="mx-4">
                 <div
-                    class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"
+                    class="bg-gray-50 border border-gray-200 px-10 py-6 rounded max-w-lg mx-auto mt-24"
                 >
-                    <header class="text-center">
-                        <h2 class="text-2xl font-bold uppercase mb-1">
-                            Log In
+                    <header class="text ">
+                        <h2 class="text-2xl py-4 font-bold uppercase ">
+                            Welcome
                         </h2>
-                        <p class="mb-4">Welcome to our application. Feel free to explore from the recent view.</p>
+                        <p class=" py-4">Welcome to our application. Feel free to explore from the recent view.</p>
                     </header>
                     @if (Session::has('success'))
                     <div class="flex p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 drk:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
@@ -21,9 +21,8 @@
                     <form action="/authenticate" method="POST">
                         @csrf
                         @method('POST')
-                        
                         <div class="mb-6">
-                            <label for="email" class="inline-block text-lg mb-2"
+                            <label for="email" class="inline-block text-sm font-semibold mb-2"
                                 >Email</label
                             >
                             <input
@@ -40,7 +39,7 @@
                         <div class="mb-6">
                             <label
                                 for="password"
-                                class="inline-block text-lg mb-2"
+                                class="inline-block text-sm font-semibold mb-2"
                             >
                                 Password
                             </label>
@@ -57,7 +56,7 @@
                         <div class="mb-6">
                             <button
                                 type="submit"
-                                class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
+                                class="bg-laravel text-white rounded py-4 w-full px-4 hover:bg-black"
                             >
                                 Sign In
                             </button>
