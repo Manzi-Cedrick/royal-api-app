@@ -16,7 +16,8 @@ use App\Http\Controllers\AuthorController;
 */
 // Route::group(['middleware'=>'auth'],function () {
     Route::get('/', [AuthorController::class,'index']);
-// });
+    Route::get('/author/show/{id}', [AuthorController::class, 'show'])->name('author.show');
+    // });
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/login',[UserController::class,'login']);
     Route::post('/authenticate',[UserController::class,'authenticate']);
