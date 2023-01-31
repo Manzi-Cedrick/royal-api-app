@@ -87,8 +87,7 @@ class AuthorController extends Controller
         $data = json_decode($response->getBody(), true);
         $books = $data['books'];
         $first_name = $data['first_name'];
-        // dd($first_name);
-        // dd($data);
+   
         return view('authors.books', [
             'title' => $first_name,
             'data' => $books

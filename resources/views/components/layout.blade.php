@@ -26,44 +26,7 @@
         <title>Royal Apps | Book Management App</title>
     </head>
     <body class="mb-48">
-        <nav class="flex justify-between items-center mb-4">
-            <a href="/"
-                ><img class="w-24" src="images/logo.png" alt="" class="logo"
-            /></a>
-            <ul class="flex space-x-6 mr-6 text-lg">
-                @auth
-                <li>
-                   <span class="label label-primary text-black font-bold">
-                   Welcome {{auth()->user()->name}}
-                   </span>
-                </li>
-                <li>
-                    <a href="login.html" class="hover:text-laravel"
-                        ><i class="fa-solid fa-gear"></i>
-                        Manage Listings</a
-                    >
-                </li>
-                <li>
-                    <form action="/logout" class='text-red-500' method='POST'>
-                @csrf
-                <button type="submit" class="btn"><i class="fa-solid mr-2 fa-sign-out"></i>Log out</button>
-            </form>
-                </li>
-                @else
-                <li>
-                    <a href="/register" class="hover:text-laravel"
-                        ><i class="fa-solid fa-user-plus"></i> Register</a
-                    >
-                </li>
-                <li>
-                    <a href="/login" class="hover:text-laravel"
-                        ><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Login</a
-                    >
-                </li>
-                @endauth
-            </ul>
-        </nav>
+    
 
         <!-- Hero -->
         <main>
