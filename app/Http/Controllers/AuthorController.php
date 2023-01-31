@@ -49,7 +49,6 @@ class AuthorController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -67,9 +66,33 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function show(Author $author)
+    public function show($id)
     {
         //
+        $token = Session::get('token_key');
+        $client = new Client();
+        $response = $client->get('https://symfony-skeleton.q-tests.com/api/v2/authors/'.$id, [
+            'headers' => [
+                'Authorization' => 'Bearer '.$token,
+                'Accept' => 'application/json',
+            ],
+            'query' => [
+                'orderBy' => 'id',
+                'direction' => 'ASC',
+                'limit' => 12,
+                'page' => 1,
+                // 'id' => $request
+            ],
+        ]);
+        $data = json_decode($response->getBody(), true);
+        $books = $data['books'];
+        $first_name = $data['first_name'];
+        // dd($first_name);
+        // dd($data);
+        return view('authors.books', [
+            'title' => $first_name,
+            'data' => $books
+        ]);
     }
 
     /**
