@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,11 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+// Route::group(['middleware'=>'auth'],function () {
+    Route::get('/', [AuthorController::class,'index']);
+// });
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/login',[UserController::class,'login']);
+    Route::post('/authenticate',[UserController::class,'authenticate']);
 });
-Route::get('/login',[UserController::class,'login'])->middleware('guest');
-Route::post('/authenticate',[UserController::class,'authenticate'])->middleware('guest');
+// Route::get('/login',[UserController::class,'login'])->middleware('guest');
