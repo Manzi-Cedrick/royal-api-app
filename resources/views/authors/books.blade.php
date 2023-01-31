@@ -31,7 +31,7 @@
         <tbody>
             @unless(count($data)==0)
             @foreach ($data as $row)
-                <x-singlecard :row="$row" />
+                <x-singlebook :row="$row" />
             @endforeach
             @else
             <p>No data</p>
