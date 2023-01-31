@@ -27,7 +27,7 @@ class UserController extends Controller
         ]);
         if ($response->successful()) {
             $token_key = $response->json()['token_key'];
-            Session(['token'=>$token_key]);
+            Session::put('token_key', $token_key);
             Session::flash('success', 'Success: Done');
             return redirect('/');
             // Store the token for future API requests
