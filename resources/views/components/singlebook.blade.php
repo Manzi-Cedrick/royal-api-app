@@ -20,7 +20,7 @@
             {{$row['number_of_pages']}}
         </td>
         <td class="px-6 flex gap-6 place-items-center justify-center items-center py-4">
-            <form action="/delete/book/{{$row['id']}}" class='text-red-500'>
+            <form action="/delete/book/{{$row['id']}}" class='text-red-500' method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn"><i class="fa-solid mr-2 fa-trash"></i>Delete</button>
