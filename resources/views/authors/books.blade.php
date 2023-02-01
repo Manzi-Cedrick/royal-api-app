@@ -6,8 +6,7 @@
                 <h1 class="font-semibold">Welcome to Books! - By {{$title}}</h1>
 
             </div>
-            @unless(count($data)==0)
-            @foreach ($data as $row)
+          
             <table class="w-full text-sm text-left text-gray-500 d:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 d:bg-gray-700 d:text-gray-400">
                     <tr>
@@ -31,17 +30,18 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-
+                <tbody> 
+                @unless(count($data)==0)
+            @foreach ($data as $row)
                     <x-singlebook :row="$row" />
-                </tbody>
-            </table>
             @endforeach
             @else
             <div class="w-full flex items-center justify-center">
                 <p>No data</p>
             </div>
             @endunless
+            </tbody>
+            </table>
         </div>
     </div>
 
