@@ -23,7 +23,6 @@ class BookController extends Controller
                 'direction' => 'ASC',
                 'limit' => 12,
                 'page' => 1,
-                // 'id' => $request
             ],
         ]);
         $data = json_decode($response->getBody(), true);
@@ -67,11 +66,9 @@ class BookController extends Controller
             'page'=>'required|integer',
             'author' => 'required|integer'
         ]);
-        // dd($request);
         $token = Session::get('token_key');
         $client = new Client();
-        // print(gettype((int)$request->get('page')));
-        $numberOfPages =  (int)$request->input('page');
+        $number_of_pages = intval(request()->input('page'));
         $response = $client->post('https://symfony-skeleton.q-tests.com/api/v2/books', [
             'headers' => [
                 'Authorization' => 'Bearer '.$token,
@@ -79,18 +76,24 @@ class BookController extends Controller
             ],
             'form_params' => [
                 'author' => [
-                    'id' => 62596
+                    'id' => intval(request()->input('author'))
                 ],
                 'title' => $request->input('title'),
-                'description' => $request->input('description'),
                 'realease_date' => $request->input('realease_date'),
+                'description' => $request->input('description'),
                 'isbn' => $request->input('isbn'),
                 'format' => $request->input('format'),
-                'number_of_pages' => $numberOfPages
-            ]
+                'number_of_pages' => intval(request()->input('page'))
+            ]   
         ]);
         $data = json_decode($response->getBody(), true);
-        dd($data);
+        if ($data) {
+            Session::flash('success', 'Success: Done');
+            return redirect('/books');
+        }else {
+            Session::flash('Error','Error occured');
+            return redirect()->back()->withInput();
+        }
     }
     public function delete(string $id) {
         $token = Session::get('token_key');
@@ -101,7 +104,6 @@ class BookController extends Controller
                 'Accept' => 'application/json',
             ]
         ]);
-        dd($response);
         $data = json_decode($response->getBody(), true);
         if ($data) {
             redirect()->back();
