@@ -21,11 +21,9 @@ Route::get('/author/show/{id}', [AuthorController::class, 'show'])->name('author
 Route::get('/books', [BookController::class, 'index'])->name('books');
 Route::get('/create/book', [BookController::class, 'create'])->name('books.create');
 Route::post('/store/book', [BookController::class, 'store'])->name('books.store');
-Route::delete('/delete/book/{id}', [BookController::class, 'delete'])->name('books.delete');
+Route::delete('/delete/book/{id}', [BookController::class, 'delete'])->name('delete');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::post('/authenticate',[UserController::class,'authenticate']);
     Route::get('/login',[UserController::class,'login'])->name('login');
 });
-
-// Route::get('/login',[UserController::class,'login'])->middleware('guest');
